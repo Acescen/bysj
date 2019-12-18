@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nuc.bysjxtglxt.mapper.NucUserMapper">
+    <resultMap id="BaseResultMap" type="nuc.bysjxtglxt.domain.NucUser">
+        <!--@mbg.generated-->
+        <!--@Table nuc_user-->
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="phone_num" jdbcType="VARCHAR" property="phoneNum"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="stu_or_wor_id" jdbcType="VARCHAR" property="stuOrWorId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="user_role" jdbcType="VARCHAR" property="userRole"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="note" jdbcType="VARCHAR" property="note"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        user_id, phone_num, `password`, stu_or_wor_id, `name`, user_role, `status`, note,
+        create_time
+    </sql>
+    <select id="findNucUserByPhoneNum" resultMap="BaseResultMap">
+
+      SELECT * FROM nuc_user where phone_num=#{phoneNum}
+
+    </select>
+    <select id="findNucUserByStuOrWorId" resultMap="BaseResultMap">
+    SELECT * FROM nuc_user where  stu_or_wor_id=#{stuOrWorId}
+
+
+  </select>
+    <select id="findNucUserListByAny" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        nuc_user u
+        <where>
+            <if test="any != null and any != ''">
+                u.user_id like concat('%',#{any},'%')
+                or u.phone_num like concat('%',#{any},'%')
+                or u.stu_or_wor_id like concat('%',#{any},'%')
+                or u.name like concat('%',#{any},'%')
+                or u.user_role like concat('%',#{any},'%')
+                or u.status like concat('%',#{any},'%')
+                or u.note like concat('%',#{any},'%')
+                or u.create_time like concat('%',#{any},'%')
+            </if>
+        </where>
+        group by u.user_id
+
+    </select>
+</mapper>

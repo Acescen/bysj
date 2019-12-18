@@ -1,0 +1,64 @@
+server:
+  port: 80
+  tomcat:
+    uri-encoding: utf-8
+  connection-timeout: 60000
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bysj?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+    username: root
+    password: 123456
+
+  redis:
+    # Redis数据库索引（默认为 0）
+    database: 0
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis 密码
+    password:
+    jedis:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 8
+        # 连接池中的最大空闲连接
+        max-idle: 500
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 2000
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 10000
+    # 连接超时时间（毫秒）
+    timeout: 0
+
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    servlet:
+      content-type: text/html
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+
+
+mybatis-plus:
+  # 实体类扫描路径
+  type-aliases-package: nuc.bysjxtglxt.pojo
+  # xml 扫描路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    jdbc-type-for-null: null
+  global-config:
+    # 关闭 mybatis-plus的 banner
+    banner: false
+
+bysj:
+  loginUrl: "http://localhost:8080/#/Login"
+  successUrl: successUrl
+  unauthorizedUrl: unauthorizedUrl
