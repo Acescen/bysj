@@ -52,7 +52,6 @@ public class StudentController {
 
     /**
      *  删除选课
-     * @param id
      * @return
      */
     @ResponseBody
