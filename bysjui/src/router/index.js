@@ -1,15 +1,26 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Login from '../views/login'
+import VueRouter from 'vue-router'
+import routes from './routes'
+import store from '../store'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  routes: [
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    }
-  ]
+const router = new VueRouter({
+  mode: 'history',
+  routes
 })
+
+router.beforeEach(function (to, from, next) {
+  if (to.meta.requiresAuth) {
+    if (!store.state.isLogin) next('/login')
+    else {
+      const beAllowed = to.meta.permissions.some(item => store.state.permissions.some(it => it === item));
+      // const beAllowed = true;
+      if (beAllowed) next()
+      else next('/403')
+    }
+  }
+  else next()
+})
+
+export default router

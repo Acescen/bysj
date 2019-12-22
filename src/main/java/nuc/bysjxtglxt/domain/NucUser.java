@@ -9,6 +9,7 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 
@@ -28,17 +29,6 @@ import javax.validation.constraints.NotNull;
 public class NucUser implements Serializable {
 
 
-    /**
-     * 用户角色
-     */
-    public static final String ADMIN = "0";
-    public static final String TEACHER = "1";
-    public static final String STUDENT = "2";
-    /**
-     * 状态
-     */
-    public static final String LOCK = "0";
-    public static final String AVAILABLE = "1";
     /**
      * userId
      */
@@ -78,14 +68,14 @@ public class NucUser implements Serializable {
      */
     @TableField(value = "user_role")
     //默认为学生角色
-    private String userRole="2";
+    private String userRole="学生";
 
     /**
      * status
      */
     @TableField(value = "status")
     //默认可用
-    private String status="1";
+    private String status="可用";
 
     /**
      * note
@@ -97,27 +87,10 @@ public class NucUser implements Serializable {
      * createTime
      */
     @TableField(value = "create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
-
-    public static final String COL_USER_ID = "user_id";
-
-    public static final String COL_PHONE_NUM = "phone_num";
-
-    public static final String COL_PASSWORD = "password";
-
-    public static final String COL_STU_OR_WOR_ID = "stu_or_wor_id";
-
-    public static final String COL_NAME = "name";
-
-    public static final String COL_USER_ROLE = "user_role";
-
-    public static final String COL_STATUS = "status";
-
-    public static final String COL_NOTE = "note";
-
-    public static final String COL_CREATE_TIME = "create_time";
 
 
 }

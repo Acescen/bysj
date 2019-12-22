@@ -1,21 +1,21 @@
 package nuc.bysjxtglxt.controller;
 
+import com.sun.xml.internal.txw2.output.ResultFactory;
 import nuc.bysjxtglxt.domain.BysjResponse;
 import nuc.bysjxtglxt.domain.NucUser;
+import nuc.bysjxtglxt.service.NucUserService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,47 +28,51 @@ import java.util.Map;
  */
 @Controller
 public class LoginController {
-
-    @Value("${bysj.loginUrl}")
-    private String loginUrl;
+    @Autowired
+    private NucUserService nucUserService;
 
     @PostMapping("/login")
     @ResponseBody
-    public BysjResponse login(HttpServletRequest request) throws Exception {
+    public BysjResponse login(HttpServletRequest request,NucUser nucUser) throws Exception {
+
+        System.out.println("待检测账户"+nucUser);
         BysjResponse bysjResponse = new BysjResponse();
 
-        String exception = (String) request.getAttribute("shiroLoginFailure");
-        String msg = "";
-        if (exception != null) {
-            if (UnknownAccountException.class.getName().equals(exception)) {
-                msg = "账号或密码错误";
-            } else if (IncorrectCredentialsException.class.getName().equals(exception)) {
-                msg = "账号或密码错误";
-            } else {
-                msg = "else >> " + exception;
-            }
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(nucUser.getStuOrWorId(), nucUser.getPassword());
+
+        try {
+            //登录
+            subject.login(token);
+            NucUser resUser = nucUserService.findNucUserByStuOrWorId(nucUser.getStuOrWorId());
+            //去除密码
+            resUser.setPassword("");
+            // 将用户的角色和权限发送到前台
+            return bysjResponse.success().put("user", resUser);
+        } catch (IncorrectCredentialsException e) {
+            return bysjResponse.fail().message("账号或密码错误！");
+        } catch (LockedAccountException e) {
+            return bysjResponse.fail().message("登录失败，该用户已被冻结！");
+        } catch (AuthenticationException e) {
+            //用户不存在
+            return bysjResponse.fail().message("账号或密码错误！");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        bysjResponse.fail().message("登陆成功");
 
-        if ("".equals(msg)) {
-            bysjResponse.success().message("登陆成功");
-            //获取当前用户
-            NucUser user = (NucUser) SecurityUtils.getSubject().getPrincipal();
-            //将密码去除
-            user.setPassword("");
+        return bysjResponse.fail().message("登录失败！");
+    }
 
-            List<String> permission = new ArrayList<>();
-            String role = user.getUserRole();
-            if (NucUser.ADMIN.equals(role)) {
-                permission.add("");
-            } else if (NucUser.STUDENT.equals(role)) {
-
-            } else if (NucUser.TEACHER.equals(role)) {
-
-            }
-
-            bysjResponse.put("user", user);
-        }
-        return bysjResponse;
+    /**
+     * 未登录，shiro应重定向到登录界面，此处返回未登录状态信息由前端控制跳转页面
+     * @return
+     */
+    @RequestMapping(value = "/unauth")
+    @ResponseBody
+    public Object unauth() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", "1000000");
+        map.put("msg", "未登录");
+        return map;
     }
 }

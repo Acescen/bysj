@@ -3,6 +3,7 @@ package nuc.bysjxtglxt.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import nuc.bysjxtglxt.domain.NucRecord;
 import nuc.bysjxtglxt.domain.NucTopic;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,13 +16,13 @@ import org.apache.ibatis.annotations.Param;
  *@Date: Created in 9:45 2019-12-17
  */
     
-public interface NucTopicMapper extends BaseMapper<NucTopic> {
-    IPage<NucTopic> findNucTopicListByAny(Page<NucTopic> page, @Param("any") String any);
+public interface NucRecordMapper extends BaseMapper<NucRecord> {
 
-    IPage<NucTopic> findMyTopicByAny(Page<NucTopic> page,  @Param("any")String any,  @Param("userId")Long userId);
 
-    NucTopic findmyTopicById(@Param("topicId") String topicId);
+    Integer findByUserId(@Param("userId") Long userId);
 
-    boolean updateTopicStatus(Long id);
+    IPage<NucTopic> findMySlelect(Page<NucTopic> page, String any,@Param("userId") Long userId);
+
+    boolean deleteSel(Long id);
 
 }

@@ -14,11 +14,7 @@
         <result column="note" jdbcType="VARCHAR" property="note"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
-        user_id, phone_num, `password`, stu_or_wor_id, `name`, user_role, `status`, note,
-        create_time
-    </sql>
+
     <select id="findNucUserByPhoneNum" resultMap="BaseResultMap">
 
       SELECT * FROM nuc_user where phone_num=#{phoneNum}
@@ -31,7 +27,7 @@
   </select>
     <select id="findNucUserListByAny" resultMap="BaseResultMap">
         SELECT
-        *
+        u.user_id,phone_num,stu_or_wor_id,name,user_role,status,note,create_time
         FROM
         nuc_user u
         <where>
@@ -43,10 +39,7 @@
                 or u.user_role like concat('%',#{any},'%')
                 or u.status like concat('%',#{any},'%')
                 or u.note like concat('%',#{any},'%')
-                or u.create_time like concat('%',#{any},'%')
             </if>
         </where>
-        group by u.user_id
-
     </select>
 </mapper>
