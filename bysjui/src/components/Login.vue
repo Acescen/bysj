@@ -9,7 +9,7 @@
     <el-container>
       <el-header style="margin-top: 3%">
         <span style="font-family: cursive ;font-size: 40px;color: darkslategrey;padding-left: 35%">
-          中北大学学生管理系统
+          毕业设计选题管理系统
         </span><span>v1.0</span></el-header>
       <el-divider/>
       <el-main>
