@@ -26,9 +26,6 @@ public class ShiroConfig {
      */
     private final static Logger log = LoggerFactory.getLogger(ShiroConfig.class);
 
-    @Value("${bysj.loginUrl}")
-    private String loginUrl;
-
 
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
@@ -67,10 +64,12 @@ public class ShiroConfig {
 
         filterChainDefinitionMap.put("/nucUser/regist", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/login", "anon");
         //测试环境下开放所有权限
-        //filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/**", "authc");
+
         shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/login");
+        shiroFilterFactoryBean.setUnauthorizedUrl("");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

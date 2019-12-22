@@ -9,6 +9,9 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @Author: jurui
@@ -34,12 +37,14 @@ public class NucTopic implements Serializable {
      * title
      */
     @TableField(value = "title")
+    @NotNull(message = "{required}")
     private String title;
 
     /**
      * introduction
      */
     @TableField(value = "introduction")
+    @NotNull(message = "{required}")
     private String introduction;
 
     /**
@@ -55,22 +60,31 @@ public class NucTopic implements Serializable {
     private Long userId;
 
     /**
+     * userName
+     */
+    @TableField(value = "user_name")
+    private String userName;
+
+    /**
+     * phoneNum
+     */
+    @TableField(value = "phone_num")
+    private String phoneNum;
+
+    /**
+     * status
+     */
+    @TableField(value = "status")
+    private String status;
+
+    /**
      * createTime
      */
     @TableField(value = "create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
-    public static final String COL_TOPIC_ID = "topic_id";
 
-    public static final String COL_TITLE = "title";
-
-    public static final String COL_INTRODUCTION = "introduction";
-
-    public static final String COL_DETAILS = "details";
-
-    public static final String COL_USER_ID = "user_id";
-
-    public static final String COL_CREATE_TIME = "create_time";
 }

@@ -1,42 +1,29 @@
 <template>
-  <div id="app" :style="size">
+  <div id="app" style="margin: 0;padding: 0;width: 100%;height: 100%;position: absolute;background-color: #dffaff">
+    <Nav v-if="navIsShow" />
     <router-view/>
   </div>
 </template>
 
 <script>
-    export default {
-        name: 'App',
-        data(){
-            return{
-                size:{
-                    width:'',
-                    height:'',
-                }
-            }
-        },
-        methods:{
-            getHeight(){
-                return this.size.height = window.innerHeight - 20 + 'px';
-            },
-            getwidth(){
-                return this.size.width = window.width - 20 + 'px';
-            }
-        },
+    import Nav from './components/Nav'
 
-        created() {
-            this.getHeight();
-            this.getwidth();
+    export default {
+        name: 'app',
+        components: {
+            Nav
+        },
+        computed: {
+            navIsShow() {
+                return this.$store.state.isLogin
+            }
         }
     }
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+  body {
+    margin: 0;
+    padding: 0;
   }
 </style>

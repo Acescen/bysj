@@ -27,17 +27,17 @@ public class ShiroAuthRealm extends AuthorizingRealm {
 
         NucUser user = (NucUser) principals.getPrimaryPrincipal();
 
+        System.out.println("AuthorizationInfo  授权  "+user);
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         String role = user.getUserRole();
-        if (NucUser.ADMIN.equals(role)) {
+        if ("管理员".equals(role)) {
             authorizationInfo.addRole("admin");
             authorizationInfo.addStringPermission("");
-
-        } else if (NucUser.STUDENT.equals(role)) {
+        } else if ("教师".equals(role)) {
             authorizationInfo.addRole("student");
 
-        } else if (NucUser.TEACHER.equals(role)) {
+        } else if ("学生".equals(role)) {
             authorizationInfo.addRole("teacher");
 
         }
@@ -59,9 +59,12 @@ public class ShiroAuthRealm extends AuthorizingRealm {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
 
 
-        String phoneNum = usernamePasswordToken.getUsername();
+        String stuOrWorId = usernamePasswordToken.getUsername();
 
-        NucUser nucUser=nucUserService.findNucUserByPhoneNum(phoneNum);
+        NucUser nucUser=nucUserService.findNucUserByStuOrWorId(stuOrWorId);
+
+        System.out.println("AuthenticationInfo  认证  "+nucUser);
+
         if (nucUser == null) {
             throw new AuthenticationException("账号或密码错误");
         }

@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nuc.bysjxtglxt.mapper.NucTopicMapper">
-  <resultMap id="BaseResultMap" type="nuc.bysjxtglxt.domain.NucTopic">
-    <!--@mbg.generated-->
-    <!--@Table nuc_topic-->
-    <id column="topic_id" jdbcType="BIGINT" property="topicId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
-    <result column="details" jdbcType="LONGVARCHAR" property="details" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    topic_id, title, introduction, details, user_id, create_time
-  </sql>
+
+
+  <select id="findNucTopicListByAny" resultType="nuc.bysjxtglxt.domain.NucTopic">
+    select * from nuc_topic n
+    <where>
+      <if test="any != null and any != ''">
+        n.topic_id like concat('%',#{any},'%')
+        or n.title like concat('%',#{any},'%')
+        or n.introduction like concat('%',#{any},'%')
+        or n.details like concat('%',#{any},'%')
+        or n.user_name like concat('%',#{any},'%')
+        or n.status like concat('%',#{any},'%')
+        or n.phone_num like concat('%',#{any},'%')
+      </if>
+    </where>
+  </select>
+  <select id="findMyTopicByAny" resultType="nuc.bysjxtglxt.domain.NucTopic">
+    select * from nuc_topic n
+    <where>
+      <if test="any != null and any != ''">
+        n.topic_id like concat('%',#{any},'%')
+        or n.title like concat('%',#{any},'%')
+        or n.introduction like concat('%',#{any},'%')
+        or n.details like concat('%',#{any},'%')
+        or n.status like concat('%',#{any},'%')
+      </if>
+      and n.user_id=#{userId}
+    </where>
+
+  </select>
+
+    <select id="findmyTopicById" resultType="nuc.bysjxtglxt.domain.NucTopic">
+      select * from nuc_topic n where n.topic_id=#{topicId}
+    </select>
+    <update id="updateTopicStatus">
+
+      update nuc_topic set nuc_topic.status='未被选择' where  nuc_topic.topic_id in(select nuc_record.topic_id from nuc_record where nuc_record.user_id=#{id})
+    </update>
 </mapper>

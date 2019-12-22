@@ -1,5 +1,9 @@
 package nuc.bysjxtglxt.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import nuc.bysjxtglxt.domain.NucUser;
+import nuc.bysjxtglxt.util.QueryRequest;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import nuc.bysjxtglxt.mapper.NucTopicMapper;
@@ -17,4 +21,10 @@ import nuc.bysjxtglxt.service.NucTopicService;
 @Service
 public class NucTopicServiceImpl extends ServiceImpl<NucTopicMapper, NucTopic> implements NucTopicService{
 
+    @Override
+    public IPage<NucTopic> findNucTopicListByAny(String any, QueryRequest request) {
+        Page<NucTopic> page = new Page<>(request.getPageNum(), request.getPageSize());
+
+        return baseMapper.findNucTopicListByAny(page,any);
+    }
 }
