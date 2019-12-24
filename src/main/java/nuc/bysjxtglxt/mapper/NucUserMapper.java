@@ -25,4 +25,7 @@ public interface NucUserMapper extends BaseMapper<NucUser> {
 
     IPage<NucUser> findNucUserListByAny(Page page, @Param("any") String any);
 
+    Integer getSelCount();
+
+    Integer getNoSelCount();
 }

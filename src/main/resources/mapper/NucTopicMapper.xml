@@ -3,34 +3,34 @@
 <mapper namespace="nuc.bysjxtglxt.mapper.NucTopicMapper">
 
 
-  <select id="findNucTopicListByAny" resultType="nuc.bysjxtglxt.domain.NucTopic">
-    select * from nuc_topic n
-    <where>
-      <if test="any != null and any != ''">
-        n.topic_id like concat('%',#{any},'%')
-        or n.title like concat('%',#{any},'%')
-        or n.introduction like concat('%',#{any},'%')
-        or n.details like concat('%',#{any},'%')
-        or n.user_name like concat('%',#{any},'%')
-        or n.status like concat('%',#{any},'%')
-        or n.phone_num like concat('%',#{any},'%')
-      </if>
-    </where>
-  </select>
-  <select id="findMyTopicByAny" resultType="nuc.bysjxtglxt.domain.NucTopic">
-    select * from nuc_topic n
-    <where>
-      <if test="any != null and any != ''">
-        n.topic_id like concat('%',#{any},'%')
-        or n.title like concat('%',#{any},'%')
-        or n.introduction like concat('%',#{any},'%')
-        or n.details like concat('%',#{any},'%')
-        or n.status like concat('%',#{any},'%')
-      </if>
-      and n.user_id=#{userId}
-    </where>
+    <select id="findNucTopicListByAny" resultType="nuc.bysjxtglxt.domain.NucTopic">
+        select * from nuc_topic n
+        <where>
+            <if test="any != null and any != ''">
+                n.topic_id like concat('%',#{any},'%')
+                or n.title like concat('%',#{any},'%')
+                or n.introduction like concat('%',#{any},'%')
+                or n.details like concat('%',#{any},'%')
+                or n.user_name like concat('%',#{any},'%')
+                or n.status like concat('%',#{any},'%')
+                or n.phone_num like concat('%',#{any},'%')
+            </if>
+        </where>
+    </select>
+    <select id="findMyTopicByAny" resultType="nuc.bysjxtglxt.domain.NucTopic">
+        select * from nuc_topic n
+        <where>
+            <if test="any != null and any != ''">
+                n.topic_id like concat('%',#{any},'%')
+                or n.title like concat('%',#{any},'%')
+                or n.introduction like concat('%',#{any},'%')
+                or n.details like concat('%',#{any},'%')
+                or n.status like concat('%',#{any},'%')
+            </if>
+            and n.user_id=#{userId}
+        </where>
 
-  </select>
+    </select>
 
     <select id="findmyTopicById" resultType="nuc.bysjxtglxt.domain.NucTopic">
       select * from nuc_topic n where n.topic_id=#{topicId}
@@ -39,4 +39,10 @@
 
       update nuc_topic set nuc_topic.status='未被选择' where  nuc_topic.topic_id in(select nuc_record.topic_id from nuc_record where nuc_record.user_id=#{id})
     </update>
+    <select id="getSelCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM nuc_topic n WHERE  n.`status`="已被选"
+  </select>
+    <select id="getNoSelCount" resultType="java.lang.Integer">
+                SELECT COUNT(*) FROM nuc_topic n WHERE  n.`status`="未被选择"
+    </select>
 </mapper>

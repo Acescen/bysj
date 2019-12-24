@@ -3,6 +3,7 @@ package nuc.bysjxtglxt.controller;
 import com.sun.xml.internal.txw2.output.ResultFactory;
 import nuc.bysjxtglxt.domain.BysjResponse;
 import nuc.bysjxtglxt.domain.NucUser;
+import nuc.bysjxtglxt.service.NucTopicService;
 import nuc.bysjxtglxt.service.NucUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -31,11 +32,14 @@ public class LoginController {
     @Autowired
     private NucUserService nucUserService;
 
+    @Autowired
+    private NucTopicService nucTopicService;
+
     @PostMapping("/login")
     @ResponseBody
-    public BysjResponse login(HttpServletRequest request,NucUser nucUser) throws Exception {
+    public BysjResponse login(HttpServletRequest request, NucUser nucUser) throws Exception {
 
-        System.out.println("待检测账户"+nucUser);
+        System.out.println("待检测账户" + nucUser);
         BysjResponse bysjResponse = new BysjResponse();
 
         Subject subject = SecurityUtils.getSubject();
@@ -65,6 +69,7 @@ public class LoginController {
 
     /**
      * 未登录，shiro应重定向到登录界面，此处返回未登录状态信息由前端控制跳转页面
+     *
      * @return
      */
     @RequestMapping(value = "/unauth")
@@ -74,5 +79,21 @@ public class LoginController {
         map.put("code", "1000000");
         map.put("msg", "未登录");
         return map;
+    }
+
+    /**
+     * 获取首页数据
+     * @return
+     */
+    @RequestMapping("/indexData")
+    @ResponseBody
+    public BysjResponse index() {
+        BysjResponse bysjResponse = new BysjResponse();
+        Integer selectTopic = nucTopicService.getSelCount();
+        Integer noSelTopic = nucTopicService.getNoSelCount();
+        Integer selectStudent = nucUserService.getSelCount();
+        Integer noSelStudent = nucUserService.getNoSelCount();
+        bysjResponse.success().put("selectTopic", selectTopic).put("noSelTopic", noSelTopic).put("selectStudent", selectStudent).put("noSelStudent", noSelStudent);
+        return bysjResponse;
     }
 }

@@ -9,13 +9,15 @@ import 'element-ui/lib/theme-chalk/index.css';
 //导入Axios
 import axios from 'axios'
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 Vue.use(Vuex);
 
 
 //可以给axios的ajax请求设置统一的主机和端口号
-axios.defaults.baseURL = "http://127.0.0.1/";
+axios.defaults.baseURL = "http://127.0.0.1:9998";
 //将axios这个对象添加到Vue的原型对象中，在使用的时候就只需要使用this.对象名就可以了
 Vue.prototype.axios = axios;
 

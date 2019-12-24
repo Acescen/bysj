@@ -42,4 +42,12 @@
             </if>
         </where>
     </select>
+    <select id="getSelCount" resultType="java.lang.Integer">
+
+SELECT COUNT(*) FROM nuc_user u WHERE u.user_role="学生" AND u.user_id in (SELECT r.user_id FROM nuc_record r)
+
+    </select>
+    <select id="getNoSelCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM nuc_user u WHERE u.user_role="学生" AND u.user_id not in (SELECT r.user_id FROM nuc_record r)
+    </select>
 </mapper>

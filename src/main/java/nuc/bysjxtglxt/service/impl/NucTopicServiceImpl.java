@@ -27,4 +27,14 @@ public class NucTopicServiceImpl extends ServiceImpl<NucTopicMapper, NucTopic> i
 
         return baseMapper.findNucTopicListByAny(page,any);
     }
+
+    @Override
+    public Integer getSelCount() {
+        return baseMapper.getSelCount();
+    }
+
+    @Override
+    public Integer getNoSelCount() {
+        return baseMapper.getNoSelCount();
+    }
 }

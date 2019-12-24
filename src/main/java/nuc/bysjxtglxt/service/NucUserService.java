@@ -24,4 +24,9 @@ public interface NucUserService extends IService<NucUser> {
     NucUser findNucUserByStuOrWorId(String stuOrWorId);
 
     IPage<NucUser> findNucUserListByAny(String any, QueryRequest request);
+
+    Integer getSelCount();
+
+    Integer getNoSelCount();
+
 }

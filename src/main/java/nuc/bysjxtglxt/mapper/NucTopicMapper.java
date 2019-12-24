@@ -24,4 +24,7 @@ public interface NucTopicMapper extends BaseMapper<NucTopic> {
 
     boolean updateTopicStatus(Long id);
 
+    Integer getSelCount();
+
+    Integer getNoSelCount();
 }

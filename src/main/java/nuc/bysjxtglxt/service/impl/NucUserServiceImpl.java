@@ -42,4 +42,14 @@ public class NucUserServiceImpl extends ServiceImpl<NucUserMapper, NucUser> impl
         return baseMapper.findNucUserListByAny(page,any);
     }
 
+    @Override
+    public Integer getSelCount() {
+        return baseMapper.getSelCount();
+    }
+
+    @Override
+    public Integer getNoSelCount() {
+        return baseMapper.getNoSelCount();
+    }
+
 }

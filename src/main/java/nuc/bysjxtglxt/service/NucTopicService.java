@@ -18,4 +18,9 @@ public interface NucTopicService extends IService<NucTopic>{
 
 
         IPage<NucTopic> findNucTopicListByAny(String any, QueryRequest request);
-    }
+
+    Integer getSelCount();
+
+    Integer getNoSelCount();
+
+}
