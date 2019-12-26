@@ -31,7 +31,6 @@
                 <el-button slot="prepend" icon="el-icon-key"/>
               </el-input>
             </el-form-item>
-            <p class="login-tips">Tips: 管理员账号(z z)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp教师账号(x x)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp学生账号(c c)</p>
           </el-form>
 
           <el-row :gutter="20" style="padding-top: 15px;padding-left: 15px">
@@ -150,13 +149,11 @@
         let permissions = [];
         //admin
         if (curruser.userRole === '管理员') {
-          permissions = await request('/static/admin.json');
+          permissions = ["admin","index"];
         } else if (curruser.userRole === '老师') {
-
-          permissions = await request('/static/teacher.json');
+          permissions = ["teacher","index"];
         } else if (curruser.userRole === '学生') {
-
-          permissions = await request('/static/student.json');
+          permissions = ["student","index"];
         } else {
         }
 

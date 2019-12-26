@@ -1,6 +1,5 @@
 package nuc.bysjxtglxt.controller;
 
-import com.sun.xml.internal.txw2.output.ResultFactory;
 import nuc.bysjxtglxt.domain.BysjResponse;
 import nuc.bysjxtglxt.domain.NucUser;
 import nuc.bysjxtglxt.service.NucTopicService;
@@ -9,7 +8,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

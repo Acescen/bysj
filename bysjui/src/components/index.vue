@@ -35,13 +35,13 @@
         <el-card shadow="hover" style="background-color: #7575a3;height: 230px">
           前端技术栈:
           <el-divider/>
-          基础框架: <el-link type="primary" href="https://cn.vuejs.org/">Vue 2.6.10</el-link>
+          基础框架: <el-link type="primary" href="https://cn.vuejs.org/" target="_blank">Vue 2.6.10</el-link>
           <br>
-          UI框架: <el-link type="primary" href="https://element.eleme.cn/#/zh-CN">Element-ui 2.13.0</el-link>
+          UI框架: <el-link type="primary" href="https://element.eleme.cn/#/zh-CN" target="_blank">Element-ui 2.13.0</el-link>
           <br>
-          通信框架: <el-link type="primary" href="http://www.axios-js.com/">Axios 0.19.0</el-link>
+          通信框架: <el-link type="primary" href="http://www.axios-js.com/" target="_blank">Axios 0.19.0</el-link>
           <br>
-          图表插件: <el-link type="primary" href="https://www.echartsjs.com/zh/index.html">Echarts 4.5.0</el-link>
+          图表插件: <el-link type="primary" href="https://www.echartsjs.com/zh/index.html" target="_blank">Echarts 4.5.0</el-link>
           <br>
           其他
         </el-card>
@@ -51,13 +51,13 @@
         <el-card shadow="hover" style="background-color: #4dffa6;height: 230px">
           后端技术栈:
           <el-divider/>
-          基础框架: <el-link type="primary" href="https://spring.io/projects/spring-boot">Spring boot 2.2.2.RELEASE</el-link>
+          基础框架: <el-link type="primary" href="https://spring.io/projects/spring-boot" target="_blank">Spring boot 2.2.2.RELEASE</el-link>
           <br>
-          持久层框架: <el-link type="primary" href="https://mp.baomidou.com/">Mybatis.plus 3.1.1</el-link>
+          持久层框架: <el-link type="primary" href="https://mp.baomidou.com/" target="_blank">Mybatis.plus 3.1.1</el-link>
           <br>
-          安全框架: <el-link type="primary" href="http://shiro.apache.org/">Apache Shiro 1.4.0</el-link>
+          安全框架: <el-link type="primary" href="http://shiro.apache.org/" target="_blank">Apache Shiro 1.4.0</el-link>
           <br>
-          数据库: <el-link type="primary" href="https://www.mysql.com/">Mysql 5.7 </el-link>
+          数据库: <el-link type="primary" href="https://www.mysql.com/" target="_blank">Mysql 5.7 </el-link>
           <br>
           其他
         </el-card>
@@ -67,18 +67,18 @@
         <el-card shadow="hover" style="background-color: #00e5e6;height: 230px">
           开发环境及项目管理:
           <el-divider/>
-          语言: <el-link type="primary" href="https://www.java.com/zh_CN/">java8</el-link>
+          语言: <el-link type="primary" href="https://www.java.com/zh_CN/" target="_blank">java8</el-link>
           <br>
-          IDE: <el-link type="primary" href="https://www.jetbrains.com/idea/">IntelliJ IDEA 2019.2.2 (Ultimate Edition)</el-link>
-          And<el-link type="primary" href="https://www.jetbrains.com/webstorm/">WebStorm 2019.2.4</el-link>
+          IDE: <el-link type="primary" href="https://www.jetbrains.com/idea/" target="_blank">IntelliJ IDEA 2019.2.2 (Ultimate Edition)</el-link>
+          And<el-link type="primary" href="https://www.jetbrains.com/webstorm/" target="_blank">WebStorm 2019.2.4</el-link>
           <br>
-          依赖管理: <el-link type="primary" href="https://maven.apache.org/">Apache Maven 3.6.1</el-link>
+          依赖管理: <el-link type="primary" href="https://maven.apache.org/" target="_blank">Apache Maven 3.6.1</el-link>
           And
-          <el-link type="primary" href="https://www.npmjs.com/">Npm 6.12.1</el-link>
+          <el-link type="primary" href="https://www.npmjs.com/" target="_blank">Npm 6.12.1</el-link>
           <br>
-          GitHub地址: <el-link type="primary" href="https://github.com/Acescen/bysj">毕业设计选题管理系统</el-link>
+          GitHub地址: <el-link type="primary" href="https://github.com/Acescen/bysj" target="_blank">毕业设计选题管理系统</el-link>
           <br>
-          在线体验: <el-link type="primary" href="http://www.jurui.com/login">毕业设计选题管理系统</el-link>
+          在线体验: <el-link type="primary" href="http://www.jurui.online" target="_blank">www.jurui.online</el-link>
           <br>
         </el-card>
 
