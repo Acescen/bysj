@@ -85,7 +85,6 @@ public class NucUserController {
     @ResponseBody
     @RequestMapping("update")
     public BysjResponse updateUser(@Valid NucUser user) {
-        System.out.println(user);
         if ("".equals(user.getPassword())) {
             user.setPassword(null);
         } else {
@@ -93,7 +92,6 @@ public class NucUserController {
             user = NucUserEncry.encry(user);
             //9865fbbcbba15ab9ecc344b854f35747
         }
-
         //保存
         boolean b = nucUserService.updateById(user);
         BysjResponse bysjResponse = new BysjResponse();
@@ -104,7 +102,6 @@ public class NucUserController {
         }
         return bysjResponse;
     }
-
 
     /**
      *  删除用户

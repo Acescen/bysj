@@ -27,18 +27,11 @@ public class NucUserEncry {
     public static NucUser encry(NucUser nucUser) {
         String newPassword =
                 new SimpleHash(algorithmName, nucUser.getPassword(),
-                        ByteSource.Util.bytes(SALT+nucUser.getPhoneNum()), hashIterations).toHex();
+                        ByteSource.Util.bytes(SALT+nucUser.getStuOrWorId()), hashIterations).toHex();
 
         nucUser.setPassword(newPassword);
         return nucUser;
     }
 
 
-    public static boolean checkUserPassword(NucUser nucUser, String password) {
-        String newPassword =
-                new SimpleHash(algorithmName, password,
-                        ByteSource.Util.bytes(SALT+nucUser.getPhoneNum()), hashIterations).toHex();
-
-        return nucUser.getPassword().equals(newPassword);
-    }
 }

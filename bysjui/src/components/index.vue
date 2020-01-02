@@ -9,16 +9,16 @@
           琚锐: 搭建权限框架，编写前端页面
         </el-card>
         <el-card shadow="hover" style="background-color: #b3d9ff">
-          贾琪:
+          贾琪: 课题功能模块的实现
         </el-card>
         <el-card shadow="hover" style="background-color: #b3d9ff">
-          李慧琴:
+          李慧琴: 学生功能模块的实现
         </el-card>
         <el-card shadow="hover" style="background-color: #b3d9ff">
-          李亮:
+          李亮: 老师功能模块及首页可视化数据的获取，数据库设计
         </el-card>
         <el-card shadow="hover" style="background-color: #b3d9ff">
-          任冠锦:
+          任冠锦: 用户功能模块的实现
         </el-card>
       </el-col>
       <el-col :span="8">

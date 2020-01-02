@@ -35,7 +35,7 @@ public class LoginController {
 
     @PostMapping("/login")
     @ResponseBody
-    public BysjResponse login(HttpServletRequest request, NucUser nucUser) throws Exception {
+    public BysjResponse login(NucUser nucUser)  {
 
         System.out.println("待检测账户" + nucUser);
         BysjResponse bysjResponse = new BysjResponse();
@@ -63,20 +63,6 @@ public class LoginController {
         }
 
         return bysjResponse.fail().message("登录失败！");
-    }
-
-    /**
-     * 未登录，shiro应重定向到登录界面，此处返回未登录状态信息由前端控制跳转页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "/unauth")
-    @ResponseBody
-    public Object unauth() {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("code", "1000000");
-        map.put("msg", "未登录");
-        return map;
     }
 
     /**

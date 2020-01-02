@@ -37,7 +37,8 @@
     </select>
     <update id="updateTopicStatus">
 
-      update nuc_topic set nuc_topic.status='未被选择' where  nuc_topic.topic_id in(select nuc_record.topic_id from nuc_record where nuc_record.user_id=#{id})
+      update nuc_topic set nuc_topic.status='未被选择' where  nuc_topic.topic_id
+        in(select nuc_record.topic_id from nuc_record where nuc_record.user_id=#{id})
     </update>
     <select id="getSelCount" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM nuc_topic n WHERE  n.`status`="已被选"

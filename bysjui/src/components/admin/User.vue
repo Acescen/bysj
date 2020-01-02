@@ -98,7 +98,7 @@
           <el-input v-model="ruleFormadd.stuOrWorId"/>
         </el-form-item>
 
-        <el-form-item label="密码" prop="password">
+        <el-form-item label="密码" >
           <el-input v-model="ruleFormadd.password"/>
         </el-form-item>
 
@@ -173,9 +173,6 @@
           ],
           phoneNum: [
             {required: true, message: "手机号不能为空", trigger: "blur"}
-          ],
-          password: [
-            {required: true, message: "密码不能为空", trigger: "blur"}
           ],
           name: [
             {required: true, message: "姓名不能为空", trigger: "blur"}

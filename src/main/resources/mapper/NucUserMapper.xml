@@ -32,7 +32,7 @@
         nuc_user u
         <where>
             <if test="any != null and any != ''">
-                u.user_id like concat('%',#{any},'%')
+                u.user_id like concat('%',#{any},'%')   '%${any}%'
                 or u.phone_num like concat('%',#{any},'%')
                 or u.stu_or_wor_id like concat('%',#{any},'%')
                 or u.name like concat('%',#{any},'%')

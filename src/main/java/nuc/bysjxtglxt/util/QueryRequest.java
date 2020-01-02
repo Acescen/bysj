@@ -14,7 +14,6 @@ import java.io.Serializable;
  */
 @Data
 public class QueryRequest implements Serializable {
-    private static final long serialVersionUID = -4869594085374385813L;
 
     private int pageSize = 1;
     private int pageNum = 10;

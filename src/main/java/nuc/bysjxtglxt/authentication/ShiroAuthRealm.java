@@ -39,7 +39,6 @@ public class ShiroAuthRealm extends AuthorizingRealm {
 
         } else if ("学生".equals(role)) {
             authorizationInfo.addRole("teacher");
-
         }
 
         return authorizationInfo;
@@ -69,10 +68,14 @@ public class ShiroAuthRealm extends AuthorizingRealm {
             throw new AuthenticationException("账号或密码错误");
         }
 
+        if ("不可用".equals(nucUser.getStatus())) {
+            throw new AuthenticationException("该账号被冻结");
+        }
+
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 nucUser,
                 nucUser.getPassword(),
-                ByteSource.Util.bytes(NucUserEncry.SALT+nucUser.getPhoneNum()),
+                ByteSource.Util.bytes(NucUserEncry.SALT+nucUser.getStuOrWorId()),
                 getName()
         );
 
