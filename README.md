@@ -68,3 +68,4 @@
 3. 更改application.yml数据库连接
 4. 运行
 
+Test
